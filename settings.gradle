@@ -1,0 +1,3 @@
+rootProject.name='DetailTextView'
+include ':app'
+include ':detailtextview'
