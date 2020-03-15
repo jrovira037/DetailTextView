@@ -57,5 +57,11 @@ private lateinit var text: DetailTextView
 
 _For a complete example check the app module of this project_
   
+  
+ # Result
+ 
+ You should get a TextView that looks like this:
+ 
+ [![](https://i.imgur.com/HRSXrIz.png)
 
 
