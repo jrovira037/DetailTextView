@@ -9,7 +9,17 @@ import android.widget.TextView
 
 class DetailTextView : LinearLayout {
 
+    // components
     private lateinit var view: View
+    private lateinit var imageView: ImageView
+    private lateinit var textViewHeader: TextView
+    private lateinit var textViewContent: TextView
+
+    // data
+    private var headerText: String = ""
+    private var contentText: String = ""
+    private var iconPath: Int? = null
+
 
     constructor(context: Context?) : super(context)
 
@@ -38,9 +48,6 @@ class DetailTextView : LinearLayout {
     }
 
     private fun init(context: Context?, attrs: AttributeSet?) {
-        var headerText: String
-        var contentText: String
-        var iconPath: Int?
 
         context!!.theme.obtainStyledAttributes(
             attrs,
@@ -58,11 +65,14 @@ class DetailTextView : LinearLayout {
         }
 
         view = View.inflate(context, R.layout.detail_text_view_layout, this)
+        imageView = view.findViewById(R.id.detailTextViewIcon)
+        textViewHeader = view.findViewById(R.id.detailTextViewHeader)
+        textViewContent = view.findViewById(R.id.detailTextViewContent)
 
-        val imageView = view.findViewById<ImageView>(R.id.detailTextViewIcon)
-        val textViewHeader = view.findViewById<TextView>(R.id.detailTextViewHeader)
-        val textViewContent = view.findViewById<TextView>(R.id.detailTextViewContent)
+        render()
+    }
 
+    private fun render() {
         if (iconPath != -1) {
             imageView.setImageResource(iconPath!!)
         } else {
@@ -73,10 +83,29 @@ class DetailTextView : LinearLayout {
         textViewContent.text = contentText
     }
 
+    /*
+     * PUBLIC FUNCTIONS
+     */
+
     fun setOnClickListener(callback: (Unit) -> Unit) {
         view.setOnClickListener {
             callback.invoke(Unit)
 
         }
+    }
+
+    fun setHeader(text: String) {
+        headerText = text
+        render()
+    }
+
+    fun setText(text: String) {
+        contentText = text
+        render()
+    }
+
+    fun setIcon(resourceId: Int) {
+        iconPath = resourceId
+        render()
     }
 }
