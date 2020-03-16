@@ -41,6 +41,9 @@ dependencies {
 
 ```xml
 <com.jroviraa.android.detailtextview.DetailTextView
+  app:icon="..."
+  app:text="..."
+  app:title="..."
   ...
 />
 ```
