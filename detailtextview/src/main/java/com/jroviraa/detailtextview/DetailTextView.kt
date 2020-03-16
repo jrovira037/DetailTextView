@@ -1,6 +1,8 @@
 package com.jroviraa.detailtextview
 
+import android.annotation.SuppressLint
 import android.content.Context
+import android.content.res.ColorStateList
 import android.util.AttributeSet
 import android.view.View
 import android.widget.ImageView
@@ -19,6 +21,7 @@ class DetailTextView : LinearLayout {
     private var headerText: String = ""
     private var contentText: String = ""
     private var iconPath: Int? = null
+    private var iconColor: Int = android.R.color.tertiary_text_light
 
 
     constructor(context: Context?) : super(context)
@@ -47,6 +50,7 @@ class DetailTextView : LinearLayout {
         init(context, attrs)
     }
 
+    @SuppressLint("ResourceAsColor")
     private fun init(context: Context?, attrs: AttributeSet?) {
 
         context!!.theme.obtainStyledAttributes(
@@ -59,6 +63,11 @@ class DetailTextView : LinearLayout {
                 headerText = getString(R.styleable.DetailTextView_title) ?: ""
                 contentText = getString(R.styleable.DetailTextView_text) ?: ""
                 iconPath = getResourceId(R.styleable.DetailTextView_icon, -1)
+
+                iconColor = getColor(
+                    R.styleable.DetailTextView_iconTint,
+                    resources.getColor(android.R.color.tertiary_text_light)
+                )
             } finally {
                 recycle()
             }
@@ -72,9 +81,11 @@ class DetailTextView : LinearLayout {
         render()
     }
 
+    @SuppressLint("ResourceAsColor")
     private fun render() {
         if (iconPath != -1) {
             imageView.setImageResource(iconPath!!)
+            imageView.imageTintList = ColorStateList.valueOf(iconColor)
         } else {
             imageView.setImageBitmap(null)
         }
