@@ -73,11 +73,11 @@ _For a complete example check the app module of this project_
  
  You should get a TextView that looks like this:
  
- [!](https://i.imgur.com/3JXVxQt.png)
+ ![](https://i.imgur.com/3JXVxQt.png)
  
  ## Without content
  
  You should get a TextView that looks like this:
  
- [!]( https://i.imgur.com/RxJupC5.png)
+![](https://i.imgur.com/RxJupC5.png)
 
