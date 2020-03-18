@@ -41,6 +41,9 @@ dependencies {
 
 ```xml
 <com.jroviraa.android.detailtextview.DetailTextView
+  app:icon="..."
+  app:text="..."
+  app:title="..."
   ...
 />
 ```
@@ -62,6 +65,6 @@ _For a complete example check the app module of this project_
  
  You should get a TextView that looks like this:
  
- [![](https://i.imgur.com/HRSXrIz.png)
+ [![](https://i.imgur.com/3JXVxQt.png)
 
 
