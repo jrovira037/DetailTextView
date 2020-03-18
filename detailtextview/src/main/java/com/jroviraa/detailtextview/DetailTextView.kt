@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.ColorStateList
 import android.util.AttributeSet
+import android.view.Gravity
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -13,6 +14,7 @@ class DetailTextView : LinearLayout {
 
     // components
     private lateinit var view: View
+    private lateinit var selectableForeground: View
     private lateinit var imageView: ImageView
     private lateinit var textViewHeader: TextView
     private lateinit var textViewContent: TextView
@@ -92,6 +94,14 @@ class DetailTextView : LinearLayout {
 
         textViewHeader.text = headerText
         textViewContent.text = contentText
+
+        if (contentText == "") {
+            textViewContent.visibility = View.GONE
+            textViewHeader.gravity = Gravity.CENTER_VERTICAL
+        } else {
+            textViewContent.visibility = View.VISIBLE
+            textViewHeader.gravity = Gravity.BOTTOM
+        }
     }
 
     /*
@@ -99,9 +109,9 @@ class DetailTextView : LinearLayout {
      */
 
     fun setOnClickListener(callback: (Unit) -> Unit) {
+
         view.setOnClickListener {
             callback.invoke(Unit)
-
         }
     }
 
