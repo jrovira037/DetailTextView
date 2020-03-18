@@ -29,6 +29,8 @@ dependencies {
 
 # Usage
 
+## With content
+
 1. Replace your current TextView tags from your .xml with DetailTextView:
 
 ```xml
@@ -58,13 +60,24 @@ private lateinit var text: TextView
 private lateinit var text: DetailTextView
 ```
 
+## Without content
+
+Repeat the same steps as the previous example, but do not set the `title` attribute
+
 _For a complete example check the app module of this project_
   
   
  # Result
  
+ ## With content
+ 
  You should get a TextView that looks like this:
  
  [![](https://i.imgur.com/3JXVxQt.png)
-
+ 
+ ## Without content
+ 
+ You should get a TextView that looks like this:
+ 
+ [![]( https://i.imgur.com/RxJupC5.png)
 
