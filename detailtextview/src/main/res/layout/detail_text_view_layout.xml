@@ -8,7 +8,8 @@
         android:layout_height="wrap_content"
         android:background="?attr/selectableItemBackground"
         android:elevation="0dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingRight="10dp">
 
         <ImageView
             android:id="@+id/detailTextViewIcon"

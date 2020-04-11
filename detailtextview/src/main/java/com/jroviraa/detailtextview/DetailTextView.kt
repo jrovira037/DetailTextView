@@ -9,21 +9,27 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.annotation.ColorInt
+import androidx.annotation.ColorRes
+import androidx.annotation.StyleRes
 
 class DetailTextView : LinearLayout {
 
     // components
     private lateinit var view: View
-    private lateinit var selectableForeground: View
     private lateinit var imageView: ImageView
-    private lateinit var textViewHeader: TextView
-    private lateinit var textViewContent: TextView
+    private lateinit var titleTextView: TextView
+    private lateinit var textTextView: TextView
 
     // data
-    private var headerText: String = ""
-    private var contentText: String = ""
-    private var iconPath: Int? = null
-    private var iconColor: Int = android.R.color.tertiary_text_light
+    private var title: String = ""
+    private var text: String = ""
+    private var iconResource: Int = -1
+
+    // colors
+    private var titleColor: Int = -1
+    private var textColor: Int = -1
+    private var iconTint: Int = -1
 
 
     constructor(context: Context?) : super(context)
@@ -62,12 +68,20 @@ class DetailTextView : LinearLayout {
         ).apply {
 
             try {
-                headerText = getString(R.styleable.DetailTextView_title) ?: ""
-                contentText = getString(R.styleable.DetailTextView_text) ?: ""
-                iconPath = getResourceId(R.styleable.DetailTextView_icon, -1)
+                title = getString(R.styleable.DetailTextView_title) ?: ""
+                text = getString(R.styleable.DetailTextView_text) ?: ""
+                iconResource = getResourceId(R.styleable.DetailTextView_icon, -1)
 
-                iconColor = getColor(
+                iconTint = getColor(
                     R.styleable.DetailTextView_iconTint,
+                    resources.getColor(android.R.color.tertiary_text_light)
+                )
+                titleColor = getColor(
+                    R.styleable.DetailTextView_titleColor,
+                    resources.getColor(android.R.color.primary_text_light)
+                )
+                textColor = getColor(
+                    R.styleable.DetailTextView_textColor,
                     resources.getColor(android.R.color.tertiary_text_light)
                 )
             } finally {
@@ -77,30 +91,37 @@ class DetailTextView : LinearLayout {
 
         view = View.inflate(context, R.layout.detail_text_view_layout, this)
         imageView = view.findViewById(R.id.detailTextViewIcon)
-        textViewHeader = view.findViewById(R.id.detailTextViewHeader)
-        textViewContent = view.findViewById(R.id.detailTextViewContent)
+        titleTextView = view.findViewById(R.id.detailTextViewHeader)
+        textTextView = view.findViewById(R.id.detailTextViewContent)
 
+        loadColors()
         render()
     }
 
+    private fun loadColors() {
+        titleTextView.setTextColor(titleColor)
+        textTextView.setTextColor(textColor)
+        imageView.imageTintList = ColorStateList.valueOf(iconTint)
+    }
+
+
     @SuppressLint("ResourceAsColor")
     private fun render() {
-        if (iconPath != -1) {
-            imageView.setImageResource(iconPath!!)
-            imageView.imageTintList = ColorStateList.valueOf(iconColor)
+        if (iconResource != -1) {
+            imageView.setImageResource(iconResource)
         } else {
             imageView.setImageBitmap(null)
         }
 
-        textViewHeader.text = headerText
-        textViewContent.text = contentText
+        titleTextView.text = title
+        textTextView.text = text
 
-        if (contentText == "") {
-            textViewContent.visibility = View.GONE
-            textViewHeader.gravity = Gravity.CENTER_VERTICAL
+        if (text == "") {
+            textTextView.visibility = View.GONE
+            titleTextView.gravity = Gravity.CENTER_VERTICAL
         } else {
-            textViewContent.visibility = View.VISIBLE
-            textViewHeader.gravity = Gravity.BOTTOM
+            textTextView.visibility = View.VISIBLE
+            titleTextView.gravity = Gravity.BOTTOM
         }
     }
 
@@ -109,24 +130,38 @@ class DetailTextView : LinearLayout {
      */
 
     fun setOnClickListener(callback: (Unit) -> Unit) {
-
         view.setOnClickListener {
             callback.invoke(Unit)
         }
     }
 
     fun setHeader(text: String) {
-        headerText = text
+        title = text
         render()
     }
 
     fun setText(text: String) {
-        contentText = text
+        this.text = text
         render()
     }
 
     fun setIcon(resourceId: Int) {
-        iconPath = resourceId
+        iconResource = resourceId
         render()
+    }
+
+    fun setTitleColor(@ColorInt color: Int) {
+        titleColor = color
+        loadColors()
+    }
+
+    fun setTextColor(@ColorInt color: Int) {
+        textColor = color
+        loadColors()
+    }
+
+    fun setIconTint(@ColorInt color: Int) {
+        iconTint = color
+        loadColors()
     }
 }

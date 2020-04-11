@@ -9,6 +9,7 @@
     tools:context=".MainActivity">
 
 
+    <!-- Non clickable detailtextview with content -->
     <com.jroviraa.detailtextview.DetailTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,6 +19,7 @@
         app:text="+41 475-08-22"
         app:title="Phone" />
 
+    <!-- Clickable detailtextview with content -->
     <com.jroviraa.detailtextview.DetailTextView
         android:id="@+id/clickable_phone"
         android:layout_width="wrap_content"
@@ -34,14 +36,16 @@
         android:layout_margin="10dp"
         android:background="#777" />
 
+    <!-- Non clickable detailtextview without content -->
     <com.jroviraa.detailtextview.DetailTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
-        app:icon="@drawable/ic_launcher_background"
+        app:icon="@drawable/ic_local_phone_black_24dp"
         app:title="Do nothing" />
 
+    <!-- Clickable detailtextview without content -->
     <com.jroviraa.detailtextview.DetailTextView
         android:id="@+id/delete"
         android:layout_width="match_parent"
@@ -49,6 +53,36 @@
         android:layout_gravity="center"
         android:gravity="center"
         app:icon="@drawable/ic_delete_black_24dp"
+        app:title="Delete" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_margin="10dp"
+        android:background="#777" />
+
+    <!-- detailtextview with colors set on xml -->
+    <com.jroviraa.detailtextview.DetailTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        app:icon="@drawable/ic_local_phone_black_24dp"
+        app:iconTint="@color/colorAccent"
+        app:text="This is the content"
+        app:textColor="@android:color/background_dark"
+        app:title="Do nothing"
+        app:titleColor="@color/colorPrimary" />
+
+    <!-- detailtextview with colors set programatically -->
+    <com.jroviraa.detailtextview.DetailTextView
+        android:id="@+id/change_color_programatically"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        app:icon="@drawable/ic_local_phone_black_24dp"
+        app:text="This is the content"
         app:title="Delete" />
 
 </LinearLayout>
