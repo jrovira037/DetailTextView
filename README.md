@@ -3,6 +3,8 @@
 [![](https://jitpack.io/v/jrovira037/DetailTextView.svg)](https://jitpack.io/#jrovira037/DetailTextView)
 [![Known Vulnerabilities](https://snyk.io/test/github/jrovira037/DetailTextView/badge.svg?targetFile=detailtextview/build.gradle)](https://snyk.io/test/github/jrovira037/DetailTextView?targetFile=detailtextview/build.gradle)
 
+ ![](https://i.imgur.com/3JXVxQt.png)
+
 The goal of this project is to provide a better looking TextView for views that need to display details (i.e. details about a contact).
 
 # Download
